@@ -22,7 +22,7 @@ public class Operation extends AppCompatActivity {
 
             int index = getIntent().getIntExtra("PLEASE HELP GOD BLESS", -1);
 
-            DotProductFragment detailsFragment = DotProductFragment.newInstance(index);
+            OperationDetailsFragment detailsFragment = OperationDetailsFragment.newInstance(index);
 
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.detailsFragmentFrame, detailsFragment)
