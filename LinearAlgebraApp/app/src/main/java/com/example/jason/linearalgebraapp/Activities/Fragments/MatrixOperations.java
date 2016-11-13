@@ -1,11 +1,6 @@
-package com.example.jason.linearalgebraapp.Activities.Fragments;
+package com.example.jason.linearalgebraapp.activities.Fragments;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Button;
-import com.example.jason.linearalgebraapp.R;
+import java.util.ArrayList;
 
 /**
  * Created by jason on 11/13/2016.

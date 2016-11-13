@@ -1,4 +1,4 @@
-package com.example.jason.linearalgebraapp.Activities.Fragments;
+package com.example.jason.linearalgebraapp.activities.Fragments;
 
 
 public interface OnThreadClickedListener {
