@@ -66,7 +66,7 @@ public class OperationDetailsFragment extends Fragment {
             newFragment = new DotProductFragment();
         }
         else if (index == 1) {
-            newFragment = new MatrixMultiplicationFragment();
+            newFragment = new TransposeMatrix();
         }
         transaction.beginTransaction()
                 .replace(R.id.detailsFragmentFrame, newFragment)

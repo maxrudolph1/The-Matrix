@@ -1,13 +1,12 @@
-package com.example.kevin.matrix;
+package com.example.jason.linearalgebraapp.activities.Fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v4.app.Fragment;
 import android.text.InputType;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,27 +15,30 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.jason.linearalgebraapp.R;
+
 /**
- * Created by Kevin on 11/13/2016.
+ * Created by jason on 11/13/2016.
  */
 
-public class MatrixInput extends AppCompatActivity {
+public class TransposeMatrix extends Fragment {
+    int numberOfRows;
+    int numberOfColumns;
 
-    int numberOfRows = 0;
-    int numberOfColumns = 0;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.matrix_input);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-        final LinearLayout matrix = (LinearLayout) findViewById(R.id.matrix);
-        final LinearLayout spinners = (LinearLayout) findViewById(R.id.spinners);
-        final LinearLayout result = (LinearLayout) findViewById(R.id.result);
-        Spinner rowsSpinner = new Spinner(getApplicationContext());
-        Spinner columnSpinner = new Spinner(getApplicationContext());
-        Button transposeButton = (Button) findViewById(R.id.multiplyButton);
+        View rootView = inflater.inflate(R.layout.fragment_transposematrix, container, false);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        final LinearLayout matrix = (LinearLayout) rootView.findViewById(R.id.matrix);
+        final LinearLayout spinners = (LinearLayout) rootView.findViewById(R.id.spinners);
+        final LinearLayout result = (LinearLayout) rootView.findViewById(R.id.result);
+        Spinner rowsSpinner = new Spinner(getContext());
+        Spinner columnSpinner = new Spinner(getContext());
+        Button transposeButton = (Button) rootView.findViewById(R.id.multiplyButton);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
                 R.array.numbers, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         rowsSpinner.setAdapter(adapter);
@@ -52,7 +54,7 @@ public class MatrixInput extends AppCompatActivity {
                 numberOfRows = Integer.parseInt((String) adapterView.getItemAtPosition(i));
                 if (numberOfRows > oldNumber) {
                     for (int index = oldNumber; index < numberOfRows; index++) {
-                        LinearLayout newRow = new LinearLayout(getApplicationContext());
+                        LinearLayout newRow = new LinearLayout(getContext());
                         newRow.setOrientation(LinearLayout.HORIZONTAL);
                         /*
                         ViewGroup.LayoutParams params = newRow.getLayoutParams();
@@ -62,7 +64,7 @@ public class MatrixInput extends AppCompatActivity {
                         */
 
                         for (int index2 = 0; index2 < numberOfColumns; index2++) {
-                            EditText et = new EditText(getApplicationContext());
+                            EditText et = new EditText(getContext());
                             et.setHint("Number");
                             et.setTextColor(Color.BLACK);
                             et.setHintTextColor(Color.BLACK);
@@ -92,7 +94,7 @@ public class MatrixInput extends AppCompatActivity {
                     for (int index = 0; index < numberOfRows; index++) {
                         LinearLayout current = (LinearLayout) matrix.getChildAt(index);
                         for (int index2 = oldNumber; index2 < numberOfColumns; index2++) {
-                            EditText et = new EditText(getApplicationContext());
+                            EditText et = new EditText(getContext());
                             et.setHint("Number");
                             et.setTextColor(Color.BLACK);
                             et.setHintTextColor(Color.BLACK);
@@ -116,7 +118,6 @@ public class MatrixInput extends AppCompatActivity {
 
             }
         });
-
         transposeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -131,29 +132,9 @@ public class MatrixInput extends AppCompatActivity {
                 arrayToLayout(result, transposeArray);
             }
         });
-    }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+        return rootView;
+    }
 
     public int[][] layoutToArray(LinearLayout ll) {
         LinearLayout current = (LinearLayout) ll.getChildAt(0);
@@ -171,10 +152,10 @@ public class MatrixInput extends AppCompatActivity {
     public void arrayToLayout(LinearLayout ll, int[][] array) {
         ll.removeAllViews();
         for (int i = 0; i < array.length; i++) {
-            LinearLayout newRow = new LinearLayout(getApplicationContext());
+            LinearLayout newRow = new LinearLayout(getContext());
             newRow.setOrientation(LinearLayout.HORIZONTAL);
             for (int j = 0; j < array[i].length; j++) {
-                EditText et = new EditText(getApplicationContext());
+                EditText et = new EditText(getContext());
                 et.setHint("Number");
                 et.setTextColor(Color.BLACK);
                 et.setHintTextColor(Color.BLACK);
@@ -196,4 +177,7 @@ public class MatrixInput extends AppCompatActivity {
         return transpose;
 
     }
+
+    public TransposeMatrix() {}
+
 }

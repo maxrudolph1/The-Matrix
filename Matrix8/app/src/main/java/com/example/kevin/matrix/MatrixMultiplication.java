@@ -225,28 +225,6 @@ public class MatrixMultiplication extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     public int[][] layoutToArray(LinearLayout ll) {
         LinearLayout current = (LinearLayout) ll.getChildAt(0);
         int[][] array = new int[ll.getChildCount()][current.getChildCount()];
@@ -278,14 +256,5 @@ public class MatrixMultiplication extends AppCompatActivity {
         }
     }
 
-    public int[][] transpose(int[][] matrix) {
-        int[][] transpose = new int[matrix[0].length][matrix.length];
-        for (int i = 0; i < transpose.length; i++) {
-            for (int j = 0; j < transpose[i].length; j++) {
-                transpose[i][j] = matrix[j][i];
-            }
-        }
-        return transpose;
 
-    }
 }
