@@ -14,9 +14,15 @@ import com.example.jason.linearalgebraapp.R;
 public class MatrixOperations {
 
 
+    public static int dotProduct(int[] v1, int[] v2) {
+        int sum = 0;
+        for (int i = 0; i < v1.length; i++) {
+            sum += v1[i] + v2[i];
+        }
+        return sum;
+    }
+
     public static double[][] rowReducer(double[][] B) {
-
-
         int m = B.length;
         int n = B[0].length;
         int add = 0;
@@ -141,21 +147,14 @@ public class MatrixOperations {
         }
     }
 
-    public static double[][] powers(double[][] A, int k) {
+    public static double[][] powers(double[] A, int k) {
 
-        for(int a = 0; a < k-1; a++) {
-           A = matrixMultiplication(A,A);
+        double[][] t = A;
+
+        for(int i = 0; i < k-1; i++) {
+            A = matrixMultiplication(A,t);
         }
         return A;
-
-    }
-
-    public static int dotProduct(int[] v1, int[] v2) {
-        int sum = 0;
-        for (int i = 0; i < v1.length; i++) {
-            sum += v1[i] + v2[i];
-        }
-        return sum;
     }
 
 
