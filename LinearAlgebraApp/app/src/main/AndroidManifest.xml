@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.Activities.DotProduct"
+            android:name=".Activities.Activities.Operation"
             android:label="@string/dotproduct_name"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
