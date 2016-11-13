@@ -1,11 +1,9 @@
-package com.example.jason.linearalgebraapp.Activities.Activities;
+package com.example.jason.linearalgebraapp.activities.activities;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.jason.linearalgebraapp.Activities.Fragments.DotProductFragment;
-import com.example.jason.linearalgebraapp.Activities.Fragments.OperationDetailsFragment;
+import com.example.jason.linearalgebraapp.activities.Fragments.OperationDetailsFragment;
 import com.example.jason.linearalgebraapp.R;
 
 /**
@@ -22,11 +20,15 @@ public class Operation extends AppCompatActivity {
 
             int index = getIntent().getIntExtra("PLEASE HELP GOD BLESS", -1);
 
-            DotProductFragment detailsFragment = DotProductFragment.newInstance(index);
-
+            OperationDetailsFragment detailsFragment = OperationDetailsFragment.newInstance(index);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.detailsFragmentFrame, detailsFragment)
                     .commit();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

@@ -1,11 +1,6 @@
-package com.example.jason.linearalgebraapp.Activities.Fragments;
+package com.example.jason.linearalgebraapp.activities.Fragments;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Button;
-import com.example.jason.linearalgebraapp.R;
+import java.util.ArrayList;
 
 /**
  * Created by jason on 11/13/2016.
@@ -147,6 +142,7 @@ public class MatrixOperations {
         }
     }
 
+<<<<<<< HEAD
     public static double[][] powers(double[] A, int k) {
 
         double[][] t = A;
@@ -157,5 +153,17 @@ public class MatrixOperations {
         return A;
     }
 
+=======
+    public static double[][] powers(double[][] A, int k) {
+        double[][] t = A;
+        for(int i = 0; i < k-1; i++ ) {
+            A = matrixMultiplication(A,t);
+        }
+
+        return A;
+    }
+
+
+>>>>>>> 3d2655a700fa413b31214cac9984d47dfbd780d5
 
 }

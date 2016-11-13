@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="Calculators">
-        <item>dot product</item>
-        <item>Hi Max</item>
+        <item>Dot Product</item>
+        <item>Multiply Matrices</item>
+        <item>Transpose Matrix</item>
     </string-array>
     <string-array name="numbers">
         <item>1</item>
