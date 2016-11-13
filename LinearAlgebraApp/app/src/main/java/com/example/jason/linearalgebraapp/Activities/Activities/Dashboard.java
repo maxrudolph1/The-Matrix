@@ -17,16 +17,16 @@ public class Dashboard extends AppCompatActivity implements OnThreadClickedListe
 
 
 
-    private void startThreadDetailsActivity(int threadIndex) {
-        Intent intent = new Intent(this, DotProduct.class);
+    private void startThreadDetailsActivity(int index) {
+        Intent intent = new Intent(this, Operation.class);
 
-        intent.putExtra("PLEASE HELP GOD BLESS", threadIndex);
+        intent.putExtra("PLEASE HELP GOD BLESS", index);
 
         startActivity(intent);
     }
 
     @Override
-    public void onThreadClicked(int threadIndex) {
-        startThreadDetailsActivity(threadIndex);
+    public void onThreadClicked(int index) {
+        startThreadDetailsActivity(index);
     }
 }
