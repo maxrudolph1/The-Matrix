@@ -119,14 +119,14 @@ public class MatrixOperations {
         return newOut;
     }
 
-    public static double[][] matrixMultiplication(double[][] A, double[][] B) {
+    public static int[][] matrixMultiplication(int[][] A, int[][] B) {
         int m = A.length;
         int n = A[0].length;
         int p = B.length;
         int q = B[0].length;
         if(n == p)
         {
-            double[][] out = new double[m][q];
+            int[][] out = new int[m][q];
 
             for(int a = 0; a < m; a++) {
 
@@ -138,32 +138,18 @@ public class MatrixOperations {
             }
             return out;
         } else {
-            return new double[m][q];
+            return new int[m][q];
         }
     }
 
-<<<<<<< HEAD
-    public static double[][] powers(double[] A, int k) {
 
-        double[][] t = A;
-
-        for(int i = 0; i < k-1; i++) {
-            A = matrixMultiplication(A,t);
-        }
-        return A;
-    }
-
-=======
-    public static double[][] powers(double[][] A, int k) {
-        double[][] t = A;
-        for(int i = 0; i < k-1; i++ ) {
-            A = matrixMultiplication(A,t);
-        }
-
-        return A;
-    }
-
-
->>>>>>> 3d2655a700fa413b31214cac9984d47dfbd780d5
+//    public static double[][] powers(double[][] A, int k) {
+//        double[][] t = A;
+//        for(int i = 0; i < k-1; i++ ) {
+//            A = matrixMultiplication(A,t);
+//        }
+//
+//        return A;
+//    }
 
 }

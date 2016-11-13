@@ -68,6 +68,9 @@ public class OperationDetailsFragment extends Fragment {
         else if (index == 1) {
             newFragment = new TransposeMatrix();
         }
+        else if (index == 2) {
+            newFragment = new MatrixMultiplicationFragment();
+        }
         transaction.beginTransaction()
                 .replace(R.id.detailsFragmentFrame, newFragment)
                 .addToBackStack(null)

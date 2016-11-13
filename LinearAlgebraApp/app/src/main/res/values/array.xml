@@ -2,8 +2,9 @@
 <resources>
     <string-array name="Calculators">
         <item>Dot Product</item>
-        <item>Multiply Matrices</item>
         <item>Transpose Matrix</item>
+        <item>Multiply Matrices</item>
+
     </string-array>
     <string-array name="numbers">
         <item>1</item>
