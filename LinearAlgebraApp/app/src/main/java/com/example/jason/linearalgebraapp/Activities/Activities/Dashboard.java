@@ -3,6 +3,7 @@ package com.example.jason.linearalgebraapp.Activities.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.example.jason.linearalgebraapp.Activities.Fragments.OnThreadClickedListener;
 import com.example.jason.linearalgebraapp.R;
@@ -13,6 +14,8 @@ public class Dashboard extends AppCompatActivity implements OnThreadClickedListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
     }
 
 
