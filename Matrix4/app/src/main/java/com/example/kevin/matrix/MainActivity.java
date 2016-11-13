@@ -23,6 +23,7 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
+    int selected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,37 +50,35 @@ public class MainActivity extends AppCompatActivity {
                 R.array.numbers, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         rows.setAdapter(adapter);
-        for (int i = 0; i < 2; i++) {
-            EditText et = new EditText(this);
-            et.setHint("Number");
-            et.setInputType(InputType.TYPE_CLASS_NUMBER);
-            vector1.addView(et);
-            et = new EditText(this);
-            et.setHint("Number");
-            et.setInputType(InputType.TYPE_CLASS_NUMBER);
-            vector2.addView(et);
-        }
+
 
         rows.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                int selected = Integer.parseInt((String) adapterView.getItemAtPosition(i));
-                vector1.removeAllViews();
-                vector2.removeAllViews();
-                for (int index = 0; index < selected; index++) {
-                    EditText et = new EditText(getApplicationContext());
-                    et.setHint("Number");
-                    et.setTextColor(Color.BLACK);
-                    et.setHintTextColor(Color.BLACK);
-                    et.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    vector1.addView(et);
-                    et = new EditText(getApplicationContext());
-                    et.setHint("Number");
-                    et.setInputType(InputType.TYPE_CLASS_NUMBER);
-                    et.setTextColor(Color.BLACK);
-                    et.setHintTextColor(Color.BLACK);
-                    vector2.addView(et);
+                int oldSelected = selected;
+                selected = Integer.parseInt((String) adapterView.getItemAtPosition(i));
+                if (selected > oldSelected) {
+                    for (int index = oldSelected; index < selected; index++) {
+                        EditText et = new EditText(getApplicationContext());
+                        et.setHint("Number");
+                        et.setTextColor(Color.BLACK);
+                        et.setHintTextColor(Color.BLACK);
+                        et.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        vector1.addView(et);
+                        et = new EditText(getApplicationContext());
+                        et.setHint("Number");
+                        et.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        et.setTextColor(Color.BLACK);
+                        et.setHintTextColor(Color.BLACK);
+                        vector2.addView(et);
+                    }
+                } else {
+                    for (int index = oldSelected - 1; index >= selected; index--) {
+                        vector1.removeViewAt(index);
+                        vector2.removeViewAt(index);
+                    }
                 }
+
             }
 
             @Override
@@ -95,7 +94,15 @@ public class MainActivity extends AppCompatActivity {
                     EditText current = (EditText) vector1.getChildAt(i);
                     EditText current2 = (EditText) vector2.getChildAt(i);
 
-                    sum += Integer.parseInt(current.getText().toString()) * Integer.parseInt(current2.getText().toString());
+                    int number1;
+                    int number2;
+                    try {
+                        number1 = Integer.parseInt(current.getText().toString());
+                        number2 = Integer.parseInt(current2.getText().toString());
+                    } catch (NumberFormatException e) {
+                        return;
+                    }
+                    sum += number1 * number2;
                 }
                 dotProduct.setText(String.valueOf(sum));
             }
