@@ -5,15 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.Arrays;
 
 /**
  * Created by Kevin on 11/13/2016.
@@ -32,8 +37,10 @@ public class MatrixInput extends AppCompatActivity {
 
         final LinearLayout matrix = (LinearLayout) findViewById(R.id.matrix);
         final LinearLayout spinners = (LinearLayout) findViewById(R.id.spinners);
+        final LinearLayout result = (LinearLayout) findViewById(R.id.result);
         Spinner rowsSpinner = new Spinner(getApplicationContext());
         Spinner columnSpinner = new Spinner(getApplicationContext());
+        Button transposeButton = (Button) findViewById(R.id.transposeButton);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.numbers, android.R.layout.simple_spinner_item);
@@ -115,6 +122,21 @@ public class MatrixInput extends AppCompatActivity {
 
             }
         });
+
+        transposeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int[][] matrixArray;
+                try {
+                    matrixArray = layoutToArray(matrix);
+                } catch (NumberFormatException e) {
+                    return;
+                }
+
+                int[][] transposeArray = transpose(matrixArray);
+                arrayToLayout(result, transposeArray);
+            }
+        });
     }
 
     @Override
@@ -137,5 +159,47 @@ public class MatrixInput extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public int[][] layoutToArray(LinearLayout ll) {
+        LinearLayout current = (LinearLayout) ll.getChildAt(0);
+        int[][] array = new int[ll.getChildCount()][current.getChildCount()];
+
+        for (int i = 0; i < array.length; i++) {
+            current = (LinearLayout) ll.getChildAt(i);
+            for (int j = 0; j < array[i].length; j++) {
+                array[i][j] = Integer.parseInt(((TextView) current.getChildAt(j)).getText().toString());
+            }
+        }
+        return array;
+    }
+
+    public void arrayToLayout(LinearLayout ll, int[][] array) {
+        ll.removeAllViews();
+        for (int i = 0; i < array.length; i++) {
+            LinearLayout newRow = new LinearLayout(getApplicationContext());
+            newRow.setOrientation(LinearLayout.HORIZONTAL);
+            for (int j = 0; j < array[i].length; j++) {
+                EditText et = new EditText(getApplicationContext());
+                et.setHint("Number");
+                et.setTextColor(Color.BLACK);
+                et.setHintTextColor(Color.BLACK);
+                et.setInputType(InputType.TYPE_CLASS_NUMBER);
+                et.setText(String.valueOf(array[i][j]));
+                newRow.addView(et);
+            }
+            ll.addView(newRow);
+        }
+    }
+
+    public int[][] transpose(int[][] matrix) {
+        int[][] transpose = new int[matrix[0].length][matrix.length];
+        for (int i = 0; i < transpose.length; i++) {
+            for (int j = 0; j < transpose[i].length; j++) {
+                transpose[i][j] = matrix[j][i];
+            }
+        }
+        return transpose;
+
     }
 }
